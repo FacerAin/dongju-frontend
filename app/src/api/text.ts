@@ -11,11 +11,16 @@ export async function getText(id: string) {
   return response.data;
 }
 
+export async function postText(data: TextType) {
+  const response = await axios.post<TextType>(`/text`, data);
+  return response.data;
+}
+
 export interface TextType {
   id: string;
   title: string;
   author: string;
-  year: number;
-  emotions: string[];
+  year?: number;
+  emotions?: string[];
   text: string;
 }

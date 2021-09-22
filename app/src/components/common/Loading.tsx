@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Facebook } from "react-content-loader";
 const LoadingWrapper = styled.div`
   width: 60%;
-  hegith: 65%;
+  height: 65%;
 `;
 
 const Loading: FC = function () {

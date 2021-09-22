@@ -10,6 +10,10 @@ export const GET_TEXT = "text/GET_TEXT";
 export const GET_TEXT_SUCCESS = "text/GET_TEXT_SUCCESS";
 export const GET_TEXT_ERROR = "text/GET_TEXT_ERROR";
 
+export const POST_TEXT = "text/POST_TEXT";
+export const POST_TEXT_SUCCESS = "text/POST_TEXT_SUCCESS";
+export const POST_TEXT_ERROR = "text/POST_TEXT_ERROR";
+
 export const getTextAllAsync = createAsyncAction(
   GET_TEXTALL,
   GET_TEXTALL_SUCCESS,
@@ -21,3 +25,9 @@ export const getTextAsync = createAsyncAction(
   GET_TEXT_SUCCESS,
   GET_TEXT_ERROR
 )<string, TextType, AxiosError>();
+
+export const postTextAsync = createAsyncAction(
+  POST_TEXT,
+  POST_TEXT_SUCCESS,
+  POST_TEXT_ERROR
+)<TextType, TextType, AxiosError>();

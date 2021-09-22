@@ -1,7 +1,15 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
 import { Form, Input, Button, Checkbox } from "antd";
-
+interface TextInputFormProps {
+  onChange: any;
+  onSubmit: any;
+  FormData: {
+    title: string;
+    author: string;
+    text: string;
+  };
+}
 const TextInputFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,7 +19,11 @@ const TextInputFormWrapper = styled.div`
   height: 90%;
 `;
 
-const TextInputForm: FC = function () {
+const TextInputForm: FC<TextInputFormProps> = function ({
+  onChange,
+  onSubmit,
+  FormData: { title, author, text },
+}) {
   return (
     <TextInputFormWrapper>
       <Form
@@ -26,7 +38,7 @@ const TextInputForm: FC = function () {
           name="title"
           rules={[{ required: true, message: "Please input title!" }]}
         >
-          <Input />
+          <Input name="title" value={title} onChange={onChange} />
         </Form.Item>
 
         <Form.Item
@@ -34,7 +46,7 @@ const TextInputForm: FC = function () {
           name="author"
           rules={[{ required: true, message: "Please input author!" }]}
         >
-          <Input />
+          <Input name="author" value={author} onChange={onChange} />
         </Form.Item>
 
         <Form.Item
@@ -42,11 +54,11 @@ const TextInputForm: FC = function () {
           name="text"
           rules={[{ required: true, message: "Please input text!" }]}
         >
-          <Input.TextArea />
+          <Input.TextArea name="text" value={text} onChange={onChange} />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button onClick={onSubmit} type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
