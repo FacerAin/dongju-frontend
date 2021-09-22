@@ -1,13 +1,15 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 interface TextItemProps {
   title: string;
   author: string;
   text: string;
+  id: string;
 }
 
-const TextItemWrapper = styled.div`
+const TextItemWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -16,6 +18,8 @@ const TextItemWrapper = styled.div`
   cursor: pointer;
   width: 350px;
   height: 200px;
+  color: black;
+  text-decoration: none;
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     color: white;
@@ -67,12 +71,14 @@ const Summary = styled.div`
   -webkit-box-orient: vertical;
   font-size: 16px;
   opacity: 0.8;
+  padding: 20px;
 `;
 
-const TextItem: FC<TextItemProps> = function ({ title, author, text }) {
+const TextItem: FC<TextItemProps> = function ({ title, author, text, id }) {
   const [isHover, setIsHover] = useState(false);
   return (
     <TextItemWrapper
+      to={`/text/${id}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >

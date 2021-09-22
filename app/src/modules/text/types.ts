@@ -7,4 +7,5 @@ export type TextAction = ActionType<typeof actions>;
 
 export type TextState = {
   Texts: AsyncState<TextType[], Error>;
+  Text: AsyncState<TextType, Error>;
 };

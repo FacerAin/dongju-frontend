@@ -26,7 +26,7 @@ const TextList: FC<TextListProps> = function ({ texts }) {
   return (
     <TextListWrapper>
       {texts.map(({ id, title, author, text }) => (
-        <TextItem title={title} author={author} text={text} key={id} />
+        <TextItem title={title} author={author} text={text} key={id} id={id} />
       ))}
     </TextListWrapper>
   );
