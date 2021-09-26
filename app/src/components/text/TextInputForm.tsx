@@ -17,6 +17,8 @@ const TextInputFormWrapper = styled.div`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   width: 70%;
   height: 90%;
+  padding-top: 50px;
+  padding-left: 70px;
 `;
 
 const TextInputForm: FC<TextInputFormProps> = function ({
@@ -27,11 +29,12 @@ const TextInputForm: FC<TextInputFormProps> = function ({
   return (
     <TextInputFormWrapper>
       <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
+        name="TextInput"
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 14 }}
         initialValues={{ remember: true }}
         autoComplete="off"
+        onFinish = {onSubmit}
       >
         <Form.Item
           label="Title"
@@ -54,12 +57,17 @@ const TextInputForm: FC<TextInputFormProps> = function ({
           name="text"
           rules={[{ required: true, message: "Please input text!" }]}
         >
-          <Input.TextArea name="text" value={text} onChange={onChange} />
+          <Input.TextArea
+            rows={10}
+            name="text"
+            value={text}
+            onChange={onChange}
+          />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button onClick={onSubmit} type="primary" htmlType="submit">
-            Submit
+        <Form.Item wrapperCol={{ offset: 4, span: 5 }}>
+          <Button type="primary" htmlType="submit">
+            추가
           </Button>
         </Form.Item>
       </Form>

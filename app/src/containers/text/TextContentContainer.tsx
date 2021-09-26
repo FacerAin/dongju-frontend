@@ -6,6 +6,7 @@ import { RouteComponentProps } from "react-router";
 import { getTextAsync } from "modules/text";
 import TextContent from "components/text/TextContent";
 
+
 interface TextContentContainerProps {
   id: string;
 }
@@ -15,6 +16,7 @@ const TextContentContainer: FC<TextContentContainerProps> = function ({ id }) {
     (state: RootState) => state.text.Text
   );
   const dispatch = useDispatch();
+  
 
 
 

@@ -13,10 +13,18 @@ const TextInputFormPageWrapper = styled.div`
   height: 100%;
 `;
 
+const HeaderText = styled.div`
+  margin-top: 50px;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 30px;
+`;
+
 const TextInputFormPage: FC = function () {
   return (
     <Template>
       <TextInputFormPageWrapper>
+        <HeaderText>Input Text</HeaderText>
         <TextInputFormContainer />
       </TextInputFormPageWrapper>
     </Template>

@@ -16,6 +16,11 @@ export async function postText(data: TextType) {
   return response.data;
 }
 
+export async function deleteText(id: string) {
+  const response = await axios.delete<TextType>(`/text/${id}`);
+  return response.data;
+}
+
 export interface TextType {
   id: string;
   title: string;

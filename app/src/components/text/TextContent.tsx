@@ -32,7 +32,7 @@ const Author = styled.div`
   padding: 15px;
   margin: 0 auto;
   border-bottom: 1px solid;
-  width: 80px;
+  width: 100px;
   display: inline-block;
 `;
 
