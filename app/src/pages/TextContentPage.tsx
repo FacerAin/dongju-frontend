@@ -22,8 +22,16 @@ const TextContentPageWrapper = styled.div`
   margin-right: 30vw;
 `;
 
-const RemoveButton = styled.div`
-  margin: 0 0 0 auto;
+const ToolContainer = styled.div`
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+`;
+
+const StyledButton = styled.div`
+  margin: 10px;
 `;
 
 const TextContentPage: FC<RouteComponentProps<MatchParams>> = function ({
@@ -37,14 +45,26 @@ const TextContentPage: FC<RouteComponentProps<MatchParams>> = function ({
     dispatch(deleteTextAsync.request(id));
     history.push("/");
   };
+
+  const onUpdate = () => {
+    history.push(`/updatetext/${id}`);
+  };
   return (
     <Template>
       <TextContentPageWrapper>
-        <RemoveButton>
-          <Button onClick={onRemove} disabled={false}>
-            삭제
-          </Button>
-        </RemoveButton>
+        <ToolContainer>
+          <StyledButton>
+            <Button onClick={onUpdate} disabled={false}>
+              수정
+            </Button>
+          </StyledButton>
+          <StyledButton>
+            <Button onClick={onRemove} disabled={false}>
+              삭제
+            </Button>
+          </StyledButton>
+        </ToolContainer>
+
         <TextContentContainer id={id} />
       </TextContentPageWrapper>
     </Template>

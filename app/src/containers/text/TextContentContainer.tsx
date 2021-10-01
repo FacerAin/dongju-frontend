@@ -2,7 +2,6 @@ import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules";
 import Loading from "components/common/Loading";
-import { RouteComponentProps } from "react-router";
 import { getTextAsync } from "modules/text";
 import TextContent from "components/text/TextContent";
 
@@ -17,12 +16,9 @@ const TextContentContainer: FC<TextContentContainerProps> = function ({ id }) {
   );
   const dispatch = useDispatch();
   
-
-
-
   useEffect(() => {
     dispatch(getTextAsync.request(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <>

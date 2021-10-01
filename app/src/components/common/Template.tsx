@@ -16,7 +16,7 @@ const Container = styled.main`
 const Template: FC<TemplateProps> = ({ children }) => {
   return (
     <Container>
-      <Header />
+      <Header></Header>
       {children}
       <Footer />
     </Container>

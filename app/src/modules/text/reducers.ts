@@ -13,6 +13,9 @@ import {
   DELETE_TEXT,
   DELETE_TEXT_SUCCESS,
   DELETE_TEXT_ERROR,
+  PUT_TEXT,
+  PUT_TEXT_SUCCESS,
+  PUT_TEXT_ERROR,
 } from "./actions";
 import { asyncState } from "lib/reducerUtils";
 
@@ -67,6 +70,18 @@ const text = createReducer<TextState, TextAction>(initialState, {
     Text: asyncState.success(action.payload),
   }),
   [DELETE_TEXT_ERROR]: (state, action) => ({
+    ...state,
+    Text: asyncState.error(action.payload),
+  }),
+  [PUT_TEXT]: (state) => ({
+    ...state,
+    Text: asyncState.load(),
+  }),
+  [PUT_TEXT_SUCCESS]: (state, action) => ({
+    ...state,
+    Text: asyncState.success(action.payload),
+  }),
+  [PUT_TEXT_ERROR]: (state, action) => ({
     ...state,
     Text: asyncState.error(action.payload),
   }),

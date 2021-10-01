@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import text from "./text/reducers";
+import search from "./search";
 import { textSaga } from "./text";
 import { all } from "redux-saga/effects";
 
 const rootReducer = combineReducers({
   text,
+  search,
 });
 
 // 루트 리듀서를 내보내주세요.

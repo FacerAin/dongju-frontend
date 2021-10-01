@@ -1,4 +1,3 @@
-import { StringGradients } from "antd/lib/progress/progress";
 import axios from "axios";
 
 export async function getTextAll() {
@@ -21,7 +20,13 @@ export async function deleteText(id: string) {
   return response.data;
 }
 
+export async function putText(data: TextType) {
+  const response = await axios.put<TextType>(`/text/${data.id}`, data);
+  return response.data;
+}
+
 export interface TextType {
+  [index: string]: any;
   id: string;
   title: string;
   author: string;

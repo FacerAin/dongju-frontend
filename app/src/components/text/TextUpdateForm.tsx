@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
-import { Form, Input, Button } from "antd";
-interface TextInputFormProps {
+import { Form, Input, Button} from "antd";
+interface TextUpdateFormProps {
   onChange: any;
   onSubmit: any;
   FormData: {
@@ -9,8 +9,13 @@ interface TextInputFormProps {
     author: string;
     text: string;
   };
+  defaultFormData: {
+    title: string;
+    author: string;
+    text: string;
+  };
 }
-const TextInputFormWrapper = styled.div`
+const TextUpdateFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -21,13 +26,14 @@ const TextInputFormWrapper = styled.div`
   padding-left: 70px;
 `;
 
-const TextInputForm: FC<TextInputFormProps> = function ({
+const TextUpdateForm: FC<TextUpdateFormProps> = function ({
   onChange,
   onSubmit,
+  defaultFormData,
   FormData: { title, author, text },
 }) {
   return (
-    <TextInputFormWrapper>
+    <TextUpdateFormWrapper>
       <Form
         name="TextInput"
         labelCol={{ span: 4 }}
@@ -36,38 +42,29 @@ const TextInputForm: FC<TextInputFormProps> = function ({
         autoComplete="off"
         onFinish={onSubmit}
       >
-        <Form.Item
-          label="Title"
-          name="title"
-          rules={[{ required: true, message: "Please input title!" }]}
-        >
+        <Form.Item label="Title" name="title">
           <Input
             name="title"
+            defaultValue={defaultFormData.title}
             value={title}
             onChange={onChange}
           />
         </Form.Item>
 
-        <Form.Item
-          label="Author"
-          name="author"
-          rules={[{ required: true, message: "Please input author!" }]}
-        >
+        <Form.Item label="Author" name="author">
           <Input
             name="author"
+            defaultValue={defaultFormData.author}
             value={author}
             onChange={onChange}
           />
         </Form.Item>
 
-        <Form.Item
-          label="Text"
-          name="text"
-          rules={[{ required: true, message: "Please input text!" }]}
-        >
+        <Form.Item label="Text" name="text">
           <Input.TextArea
             rows={10}
             name="text"
+            defaultValue={defaultFormData.text}
             onChange={onChange}
             value={text}
           />
@@ -79,8 +76,8 @@ const TextInputForm: FC<TextInputFormProps> = function ({
           </Button>
         </Form.Item>
       </Form>
-    </TextInputFormWrapper>
+    </TextUpdateFormWrapper>
   );
 };
 
-export default TextInputForm;
+export default TextUpdateForm;

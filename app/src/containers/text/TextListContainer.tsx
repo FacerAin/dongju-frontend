@@ -9,17 +9,30 @@ const TextListContainer: FC = function () {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.text.Texts
   );
+
+  const { searchWord, option } = useSelector(
+    (state: RootState) => state.search
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTextAllAsync.request(""));
   }, [dispatch]);
 
+  let filtered_data = data
+    ? data.filter((item) => {
+        if (item[option].includes(searchWord)) {
+          return item;
+        }
+        return false;
+      })
+    : null;
+
   return (
     <>
       {loading && <Loading />}
       {error && <p style={{ textAlign: "center" }}>Error!</p>}
-      {data && <TextList texts={data} />}
+      {filtered_data && <TextList texts={filtered_data} />}
     </>
   );
 };

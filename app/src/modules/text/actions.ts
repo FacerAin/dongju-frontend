@@ -18,6 +18,10 @@ export const DELETE_TEXT = "text/DELETE_TEXT";
 export const DELETE_TEXT_SUCCESS = "/text/DELETE_TEXT_SUCCESS";
 export const DELETE_TEXT_ERROR = "/text/DELETE_TEXT_ERROR";
 
+export const PUT_TEXT = "text/PUT_TEXT";
+export const PUT_TEXT_SUCCESS = "text/PUT_TEXT_SUCCESS";
+export const PUT_TEXT_ERROR = "text/PUT_TEXT_ERROR";
+
 export const getTextAllAsync = createAsyncAction(
   GET_TEXTALL,
   GET_TEXTALL_SUCCESS,
@@ -41,3 +45,9 @@ export const deleteTextAsync = createAsyncAction(
   DELETE_TEXT_SUCCESS,
   DELETE_TEXT_ERROR
 )<string, any, AxiosError>();
+
+export const putTextAsync = createAsyncAction(
+  PUT_TEXT,
+  PUT_TEXT_SUCCESS,
+  PUT_TEXT_ERROR
+)<TextType, TextType, AxiosError>();

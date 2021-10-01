@@ -1,10 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules";
-import TextInputForm from "components/text/TextInputForm";
-import { postTextAsync } from "modules/text";
+import TextUpdateForm from "components/text/TextUpdateForm";
+import { putTextAsync } from "modules/text";
+import { getTextAsync } from "modules/text";
 import { useHistory } from "react-router-dom";
 import Loading from "components/common/Loading";
+
+interface TextUpdateFormContainerProps {
+  id: string;
+}
 
 const initialForm = {
   id: "",
@@ -13,16 +18,32 @@ const initialForm = {
   text: "",
 };
 
-const TextInputFormContainer: FC = function () {
-  const [FormData, setFormData] = useState(initialForm);
+const TextUpdateFormContainer: FC<TextUpdateFormContainerProps> = function ({
+  id,
+}) {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.text.Text
   );
+  const [FormData, setFormData] = useState(initialForm);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTextAsync.request(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if(data){
+      setFormData(data)
+    }
+   
+  }, [data])
 
   const history = useHistory();
-  const dispatch = useDispatch();
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(FormData);
     setFormData({
       ...FormData,
       [name]: value,
@@ -30,7 +51,7 @@ const TextInputFormContainer: FC = function () {
   };
 
   const onSubmit = () => {
-    dispatch(postTextAsync.request(FormData));
+    dispatch(putTextAsync.request(FormData));
     history.push("/");
   };
 
@@ -39,7 +60,8 @@ const TextInputFormContainer: FC = function () {
       {loading && <Loading />}
       {error && <p style={{ textAlign: "center" }}>Error!</p>}
       {data && (
-        <TextInputForm
+        <TextUpdateForm
+        defaultFormData = {data}
           FormData={FormData}
           onChange={onChange}
           onSubmit={onSubmit}
@@ -49,4 +71,4 @@ const TextInputFormContainer: FC = function () {
   );
 };
 
-export default TextInputFormContainer;
+export default TextUpdateFormContainer;

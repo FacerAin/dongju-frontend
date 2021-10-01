@@ -8,6 +8,7 @@ interface TextContentProps {
 }
 
 const TextContentWrapper = styled.div`
+  font-family: "Noto Sans KR", sans-serif;
   display: flex;
   flex-direction: column;
   border-radius: 10px;

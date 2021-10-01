@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
 
 interface ButtonProps {
   disabled?: boolean;
