@@ -21,7 +21,8 @@ const TextListContainer: FC = function () {
 
   const filtered_data = useMemo(() => {
     if (data) {
-      return data.filter((item) => {
+      let text_data = data;
+      return text_data.filter((item) => {
         return item[option].includes(searchWord);
       });
     }
