@@ -19,17 +19,17 @@ const TextListContainer: FC = function () {
     dispatch(getTextAllAsync.request(""));
   }, [dispatch]);
 
-  const filtered_data = useMemo(
-    () =>
-      data &&
-      data.filter((item) => {
+  const filtered_data = useMemo(() => {
+    if (data) {
+      console.log(data);
+      return data.filter((item) => {
         if (item[option].includes(searchWord)) {
           return item;
         }
         return false;
-      }),
-    [data, option, searchWord]
-  );
+      });
+    }
+  }, [data, option, searchWord]);
 
   return (
     <>
