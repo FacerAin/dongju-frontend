@@ -1,10 +1,8 @@
 import { FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "modules";
+import { useDispatch } from "react-redux";
 import TextInputForm from "components/text/TextInputForm";
 import { postTextAsync } from "modules/text";
 import { useHistory } from "react-router-dom";
-import Loading from "components/common/Loading";
 
 const initialForm = {
   id: "",
@@ -15,9 +13,6 @@ const initialForm = {
 
 const TextInputFormContainer: FC = function () {
   const [FormData, setFormData] = useState(initialForm);
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.text.Text
-  );
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -36,15 +31,12 @@ const TextInputFormContainer: FC = function () {
 
   return (
     <>
-      {loading && <Loading />}
-      {error && <p style={{ textAlign: "center" }}>Error!</p>}
-      {data && (
+
         <TextInputForm
           FormData={FormData}
           onChange={onChange}
           onSubmit={onSubmit}
         />
-      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules";
 import TextList from "components/text/TextList";
@@ -19,14 +19,17 @@ const TextListContainer: FC = function () {
     dispatch(getTextAllAsync.request(""));
   }, [dispatch]);
 
-  let filtered_data = data
-    ? data.filter((item) => {
+  const filtered_data = useMemo(
+    () =>
+      data &&
+      data.filter((item) => {
         if (item[option].includes(searchWord)) {
           return item;
         }
         return false;
-      })
-    : null;
+      }),
+    [data, option, searchWord]
+  );
 
   return (
     <>

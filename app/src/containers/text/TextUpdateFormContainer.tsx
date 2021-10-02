@@ -43,7 +43,6 @@ const TextUpdateFormContainer: FC<TextUpdateFormContainerProps> = function ({
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(FormData);
     setFormData({
       ...FormData,
       [name]: value,
