@@ -6,6 +6,6 @@ import { AsyncState } from "lib/reducerUtils";
 export type TextAction = ActionType<typeof actions>;
 
 export type TextState = {
-  Texts: AsyncState<Array<TextType>, Error>;
+  Texts: AsyncState<TextType[], Error>;
   Text: AsyncState<TextType, Error>;
 };

@@ -22,10 +22,7 @@ const TextListContainer: FC = function () {
   const filtered_data = useMemo(() => {
     if (data) {
       return data.filter((item) => {
-        if (item[option].includes(searchWord)) {
-          return item;
-        }
-        return false;
+        return item[option].includes(searchWord);
       });
     }
   }, [data, option, searchWord]);
