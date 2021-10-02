@@ -1,0 +1,50 @@
+name: React build
+on: 
+  push:                             
+    branches:
+      - main
+
+jobs:
+  build:
+    env:
+      working-directory: ./app
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout source code.   
+        uses: actions/checkout@master
+        
+      - name: Cache node modules
+        id: node-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+      - name: Install Dependencies    # 의존 파일 설치
+        run: yarn install
+        working-directory: ${{ env.working-directory }}
+
+      - name: Build                   
+        run: yarn build
+        working-directory: ${{ env.working-directory }}
+        
+  deploy:
+    env:
+      working-directory: ./app
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Deploy Using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+        #  port: ${{ secrets.PORT }} # default : 22
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }} && git pull
+            cd app
+            yarn install
+            yarn build
