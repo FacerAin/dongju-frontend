@@ -4,7 +4,6 @@ export async function getTextAll() {
   const response = await axios.get<TextType[]>(
     `http://dapi.facerain.club/text`
   );
-  console.log(response);
   return response.data;
 }
 

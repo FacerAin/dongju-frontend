@@ -20,7 +20,7 @@ const TextListContainer: FC = function () {
   useEffect(() => {
     dispatch(getTextAllAsync.request(""));
   }, [dispatch]);
-  
+
   const filtered_data = useMemo(() => {
     if (data) {
       return data.filter((item) => {
@@ -28,10 +28,6 @@ const TextListContainer: FC = function () {
       });
     }
   }, [data, searchWord, option]);
-  
-  console.log(data);
-  console.log(loading);
-  console.log(error);
   return (
     <>
       {loading && <Loading />}
