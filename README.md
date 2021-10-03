@@ -4,7 +4,7 @@
 
 [시 쓰는 AI: Dong-ju] React 기반의 Web Application입니다.  
 
-[Service Link](dongju.facerain.club)
+[Service Link](http://dongju.facerain.club)
 
 ## Feature
 - Collecting Poem Data With UI
