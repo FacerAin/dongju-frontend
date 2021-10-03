@@ -10,3 +10,5 @@
 
 - Collecting Poem Data With WEB UI
   ![Collecting Poem Data With WEB UI](./img/texts.png)
+
+- CI/CD Using Github Action
