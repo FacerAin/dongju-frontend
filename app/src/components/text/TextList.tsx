@@ -4,9 +4,8 @@ import TextItem from "components/text/TextItem";
 import { TextType } from "api/text";
 
 interface TextListProps {
-  texts: TextType [];
+  texts: TextType[];
 }
-
 const TextListWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;

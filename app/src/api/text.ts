@@ -1,27 +1,40 @@
 import axios from "axios";
 
 export async function getTextAll() {
-  const response = await axios.get<TextType[]>(`/text`);
+  const response = await axios.get<TextType[]>(
+    `http://dapi.facerain.club/text`
+  );
+  console.log(response);
   return response.data;
 }
 
 export async function getText(id: string) {
-  const response = await axios.get<TextType>(`/text/${id}`);
+  const response = await axios.get<TextType>(
+    `http://dapi.facerain.club/text/${id}`
+  );
   return response.data;
 }
 
 export async function postText(data: TextType) {
-  const response = await axios.post<TextType>(`/text`, data);
+  const response = await axios.post<TextType>(
+    `http://dapi.facerain.club/text`,
+    data
+  );
   return response.data;
 }
 
 export async function deleteText(id: string) {
-  const response = await axios.delete<TextType>(`/text/${id}`);
+  const response = await axios.delete<TextType>(
+    `http://dapi.facerain.club/text/${id}`
+  );
   return response.data;
 }
 
 export async function putText(data: TextType) {
-  const response = await axios.put<TextType>(`/text/${data.id}`, data);
+  const response = await axios.put<TextType>(
+    `http://dapi.facerain.club/text/${data.id}`,
+    data
+  );
   return response.data;
 }
 

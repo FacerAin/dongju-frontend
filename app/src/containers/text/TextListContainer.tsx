@@ -1,20 +1,12 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules";
 import TextList from "components/text/TextList";
 import { getTextAllAsync } from "modules/text";
 import Loading from "components/common/Loading";
 import { TextType } from "api/text";
-function filtering_data (
-  data: TextType[],
-  option: string,
-  searchWord: string
-) {
-  return data.filter((item) => {
-    return item[option].includes(searchWord);
-  });
-};
-
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+const test = "abc";
 const TextListContainer: FC = function () {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.text.Texts
@@ -28,13 +20,23 @@ const TextListContainer: FC = function () {
   useEffect(() => {
     dispatch(getTextAllAsync.request(""));
   }, [dispatch]);
-
-
+  /*
+  const filtered_data = useMemo(() => {
+    if (data) {
+      return data.filter((item) => {
+        return item[option].includes(searchWord);
+      });
+    }
+  }, [data, searchWord, option]);
+  */
+  console.log(data);
+  console.log(loading);
+  console.log(error);
   return (
     <>
       {loading && <Loading />}
       {error && <p style={{ textAlign: "center" }}>Error!</p>}
-      {data && <TextList texts={filtering_data(data, option, searchWord)} />}
+      {data && <TextList texts={data} />}
     </>
   );
 };

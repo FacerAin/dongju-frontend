@@ -20,7 +20,7 @@ import {
 import { asyncState } from "lib/reducerUtils";
 
 const initialState: TextState = {
-  Texts: asyncState.initial(),
+  Texts: asyncState.initial([]),
   Text: asyncState.initial(),
 };
 
