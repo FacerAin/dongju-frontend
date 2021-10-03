@@ -4,9 +4,6 @@ import { RootState } from "modules";
 import TextList from "components/text/TextList";
 import { getTextAllAsync } from "modules/text";
 import Loading from "components/common/Loading";
-import { TextType } from "api/text";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
-const test = "abc";
 const TextListContainer: FC = function () {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.text.Texts
