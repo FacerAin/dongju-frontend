@@ -1,9 +1,9 @@
 import { FC, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules";
-import TextList from "components/text/TextList";
 import { getTextAllAsync } from "modules/text";
 import Loading from "components/common/Loading";
+import TextList from "components/text/TextList"
 const TextListContainer: FC = function () {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.text.Texts
@@ -21,7 +21,7 @@ const TextListContainer: FC = function () {
   const filtered_data = useMemo(() => {
     if (data) {
       return data.filter((item) => {
-        return (item['check'] && item[option].includes(searchWord));
+        return (!item['check'] && item[option].includes(searchWord));
       });
     }
   }, [data, searchWord, option]);

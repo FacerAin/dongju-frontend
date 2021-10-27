@@ -9,6 +9,7 @@ import Loading from "components/common/Loading";
 
 interface TextUpdateFormContainerProps {
   id: string;
+	isCheck ?: boolean;
 }
 
 const initialForm = {
@@ -16,10 +17,11 @@ const initialForm = {
   title: "",
   author: "",
   text: "",
+  check: false,
 };
 
 const TextUpdateFormContainer: FC<TextUpdateFormContainerProps> = function ({
-  id,
+  id, isCheck
 }) {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.text.Text
@@ -48,10 +50,22 @@ const TextUpdateFormContainer: FC<TextUpdateFormContainerProps> = function ({
       [name]: value,
     });
   };
+	
+	const onCheckChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+		setFormData({
+			...FormData,
+			check: e.target.checked
+		})
+	}
 
   const onSubmit = () => {
     dispatch(putTextAsync.request(FormData));
-    history.push("/");
+	  if(isCheck){
+		  history.push("/check");
+	  }else{
+		  history.push("/check");
+	  }
+    
   };
 
   return (
@@ -64,6 +78,7 @@ const TextUpdateFormContainer: FC<TextUpdateFormContainerProps> = function ({
           FormData={FormData}
           onChange={onChange}
           onSubmit={onSubmit}
+			onCheckChange={onCheckChange}
         />
       )}
     </>

@@ -9,6 +9,7 @@ const initialForm = {
   title: "",
   author: "",
   text: "",
+	check: false,
 };
 
 const TextInputFormContainer: FC = function () {

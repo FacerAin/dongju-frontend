@@ -45,4 +45,5 @@ export interface TextType {
   year?: number;
   emotions?: string[];
   text: string;
+  check: boolean;
 }
