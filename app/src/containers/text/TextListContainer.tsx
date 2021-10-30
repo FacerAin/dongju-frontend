@@ -41,12 +41,13 @@ const TextListContainer: FC = function () {
     <>
       {loading && <Loading />}
       {error && <p style={{ textAlign: "center" }}>Error!</p>}
-      {data && <TextList texts={filtered_data} />}
         {data && (
           <CounterText>
             {filtered_data.length}편의 시가 수록되었습니다.
           </CounterText>
         )}
+      {data && <TextList texts={filtered_data} />}
+
     </>
   );
 };
