@@ -42,7 +42,7 @@ const TextContentPage: FC<RouteComponentProps<MatchParams>> = function ({ match 
 
 	const onRemove = () => {
 		dispatch(deleteTextAsync.request(id));
-		history.push('/');
+		history.go(2);
 	};
 
 	const onUpdate = () => {
